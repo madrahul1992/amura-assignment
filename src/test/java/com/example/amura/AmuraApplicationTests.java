@@ -13,6 +13,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Objects;
+
 import static junit.framework.TestCase.assertTrue;
 
 @RunWith(SpringRunner.class)
@@ -22,9 +24,9 @@ public class AmuraApplicationTests {
     @LocalServerPort
     private int port;
 
-    TestRestTemplate restTemplate = new TestRestTemplate();
+    private TestRestTemplate restTemplate = new TestRestTemplate();
 
-    HttpHeaders headers = new HttpHeaders();
+    private HttpHeaders headers = new HttpHeaders();
 
 //    @Test
 //    public void contextLoads() {
@@ -43,7 +45,7 @@ public class AmuraApplicationTests {
         MatrixInput matrixInput = new MatrixInput();
         matrixInput.setMatrix(matrix);
 
-        HttpEntity<MatrixInput> entity = new HttpEntity<MatrixInput>(matrixInput, headers);
+        HttpEntity<MatrixInput> entity = new HttpEntity<>(matrixInput, headers);
 
         ResponseEntity<String> response = restTemplate.exchange(
                 createURLWithPort("/matrix/sub"),
@@ -55,7 +57,7 @@ public class AmuraApplicationTests {
     }
 
     @Test
-    public void testSubMatrixInput() throws Exception {
+    public void testSubMatrixInput() {
 
         int[][] matrix = {
                 {0, 1, 2, 0},
@@ -66,13 +68,13 @@ public class AmuraApplicationTests {
         MatrixInput matrixInput = new MatrixInput();
         matrixInput.setMatrix(matrix);
 
-        HttpEntity<MatrixInput> entity = new HttpEntity<MatrixInput>(matrixInput, headers);
+        HttpEntity<MatrixInput> entity = new HttpEntity<>(matrixInput, headers);
 
         ResponseEntity<String> response = restTemplate.exchange(
                 createURLWithPort("/matrix/sub"),
                 HttpMethod.POST, entity, String.class);
-        
-        assertTrue(response.getBody().contains("Matrix should contain 1 and 0 only"));
+
+        assertTrue(Objects.requireNonNull(response.getBody()).contains("Matrix should contain 1 and 0 only"));
     }
 
     private String createURLWithPort(String uri) {

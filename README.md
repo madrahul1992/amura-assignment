@@ -3,36 +3,36 @@
 A REST API in Java (Spring boot) that implememts finding largest submatrix containing only 1's from a binary matrix.
 
 ## Contents
-- [Description](#description)
 - [Requirements](#requirements)
 - [Documentation](#documentation)
     - [Install Dependencies](#install-dependencies)
     - [Run](#run)
+    - [Test](#test)
     - [Routes](#routes)
 
 ## Requirements
 - Spring Boot - 2.1.4
 - Java - 11.0.1
 
-## Documentation
+# Documentation
 
-# Install Dependencies
+## Install Dependencies
 ```bash
 mvn install
 ``` 
 
-# Run
+## Run
 ```bash
 mvn spring-boot:run
 ```
 
-# Test
+## Test
 ```bash
 mvn test
 ```
 
 
-# Routes
+## Routes
 
 ```
     Route: http://localhost:3000/matrix/sub/
