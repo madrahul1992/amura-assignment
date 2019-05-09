@@ -26,10 +26,10 @@ public class AmuraApplicationTests {
 
     HttpHeaders headers = new HttpHeaders();
 
-    @Test
-    public void contextLoads() {
-
-    }
+//    @Test
+//    public void contextLoads() {
+//
+//    }
 
     @Test
     public void testSubMatrix() throws Exception {
@@ -71,10 +71,7 @@ public class AmuraApplicationTests {
         ResponseEntity<String> response = restTemplate.exchange(
                 createURLWithPort("/matrix/sub"),
                 HttpMethod.POST, entity, String.class);
-
-        String expected = "{\"x\":1,\"y\":0,\"width\":4,\"height\":2,\"subMatrix\":[[1,1,1,1],[1,1,1,1]]}";
-        System.out.print(response.getBody());
-
+        
         assertTrue(response.getBody().contains("Matrix should contain 1 and 0 only"));
     }
 
